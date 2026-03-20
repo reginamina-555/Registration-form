@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Registration Form</title>
+    <title>This Page</title>
 </head>
 <body>
     <h1><center>Registration Form</center></h1>
@@ -18,7 +18,7 @@
 
     <!--Email-->
     <div class="email">
-        <label>Email Addres:</label><br>
+        <label>Email Address:</label><br>
         <input type="text" id="email" placeholder="Enter your Email Address">
         <div id="emailError" style="color:red;"></div>
     </div>
@@ -30,6 +30,7 @@
         <label>Password:</label><br>
         <input type="password" id="password" placeholder="Enter your Password">
         <div id="passwordError" style="color:red;"></div>
+        <input type="checkbox" onclick="togglePassword()"> Show Password
     </div>
 
 <br>
@@ -40,6 +41,7 @@
         <input type="password" id="confirmPassword" placeholder="Enter your Password">
         <div id="confirmPasswordError" style="color:red;"></div>
         <div id="passwordMatchMessage"></div>
+        <input type="checkbox" onclick="toggleConfirmPassword()"> Show Password
     </div>
 
 <br>
@@ -106,6 +108,7 @@
 
 <script>
 
+// Get all values
 function getFormValues(){
 
     let gender = "";
@@ -129,6 +132,7 @@ function getFormValues(){
     };
 }
 
+// Validate form
 function validateForm() {
     let values = getFormValues();
     let errors = [];
@@ -191,6 +195,7 @@ function validateForm() {
     return errors;
 }
 
+// Register
 function registerUser() {
     let errors = validateForm();
 
@@ -210,6 +215,7 @@ function registerUser() {
     }
 }
 
+// Clear
 function clearForm() {
 
     document.getElementById("fullName").value = "";
@@ -238,6 +244,7 @@ function clearForm() {
     alert("✓ Form has been cleared!");
 }
 
+// Password match checker
 function checkPasswordMatch() {
 
     let password = document.getElementById("password").value;
@@ -255,6 +262,17 @@ function checkPasswordMatch() {
         messageDiv.innerHTML = "✗ Passwords do not match";
         messageDiv.style.color = "red";
     }
+}
+
+// Show/Hide password
+function togglePassword() {
+    let pass = document.getElementById("password");
+    pass.type = pass.type === "password" ? "text" : "password";
+}
+
+function toggleConfirmPassword() {
+    let pass = document.getElementById("confirmPassword");
+    pass.type = pass.type === "password" ? "text" : "password";
 }
 
 document.getElementById("password").addEventListener("keyup", checkPasswordMatch);
